@@ -1,0 +1,160 @@
+﻿{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="new_loader">
+        <div class="lad" id="lad">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        <span>{{ full_name }}</span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Navbar Icon -->
+                <div >
+                    <div class="nav-mobile nav-bar-icon" style="font-family:drugsregular; margin-top:4px;">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- End Mobile Navbar Icon -->
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+                        <li>
+                            <a href="\upload_files" style="font-family: 'Lane - Narrow'; font-weight: normal;">Upload Files</a>
+                        </li>
+                        <li>
+                            <a href="\study_list" style="font-family: 'Lane - Narrow'; font-weight: normal;">Your Studies</a>
+                        </li>
+                        <li>
+                            <a href="\update_password">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="#top" style="font-family: 'Lane - Narrow'; font-weight: normal;" onclick="csci_logout();">Log out</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        <!-- Intro Section -->
+        <section id="intro" class="dark-bg">
+
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" data-background-img="{%  static 'main/img/full/bg_image.png' %}">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+                        <div class="content-caption light-color">
+                            <div class="container">
+                                <h1>Product Name Here</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <div class="clearfix"></div>
+
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center">
+            <div class="container">
+
+                <div style="width: 100%; margin: 0 auto; text-align: left; border-top: solid lightgrey 1px; border-left: solid lightgrey 1px; border-right: solid lightgrey 1px; background-color: whitesmoke; margin-bottom: 40px; margin-top: 40px; line-height: 2; font-size: 1.5em;">
+                    <tt/>One of the principal reasons for the success of machine learning discoveries can be attributed
+                    to the use of large sums of labeled data to train various learning models. The availabilities of
+                    annotated data depend, to a large extent, on the nature of the domain, and how easy it is to obtain
+                    labeled data-points. One of the areas that we believe still lacks substantial labeled data is audio.
+                    This is not surprising, since labeling audio-segments can be rather tedious and time-consuming,
+                    mainly due to the temporal nature of it.
+                    <br/><br/>
+                    In this paper, we present a web-based platform that allows individuals and research teams to
+                    crowdsource large sums of labeled audio-segments efficiently and effectively. Through the use of our
+                    platform, the task of labeling can be performed by specific individuals assigned by the research
+                    team, or by utilizing an external on-demand public workforce such as Mechanical Turk.
+                    <br/><br/>
+                    Once an individual or a team signs up to use the platform as researchers, they will be granted
+                    administrative access that will enable them to upload their own audio files, and customize the
+                    labeling and data collection process according to their study needs. Examples of customizing the
+                    study include listing the different labels of interest, specifying the duration of audio-segments
+                    and how they should be extracted from the audio file(s), and defining the rules of how labelers
+                    should be prompted with the audio-segments (e.g. at random, depending on previous labels, etc.) Our
+                    system will automatically handle generating the audio-segments from the audio files, presenting
+                    labelers with an intuitive interface using the rules specified by the study administrators, and
+                    finally recording the labelers’ responses and providing them to the administrators of the study in a
+                    readable and easy-to-access format.
+                </div>
+
+            </div>
+
+        </section>
+        <!-- End Work Section -->
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <!-- Copyright Bar -->
+            <section class="copyright ptb-60">
+                <div class="container">
+                    <p class="" style="font-family: 'Lane - Narrow'; font-size: 16px; text-transform: uppercase;">
+                        © 2018 <b>Crafted lovingly in Charleston SC</b>. All Rights Reserved.
+                        <br />
+                        Built  by <b>Ayman Hajja, PhD</b>
+                    </p>
+                </div>
+            </section>
+            <!-- End Copyright Bar -->
+
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- Scroll Top -->
+        <a class="scroll-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+        <!-- End Scroll Top -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

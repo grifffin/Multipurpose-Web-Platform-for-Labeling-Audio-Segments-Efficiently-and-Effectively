@@ -1,0 +1,171 @@
+{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+<script>
+    $(document).ready(function () {
+        console.log($("#audio_source").attr("src"));
+        getFirstTime();
+    });
+</script>
+
+{% block content %}
+
+    <section id="new_loader">
+        <div class="lad" id="lad">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        <span>{{ full_name }}</span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Navbar Icon -->
+                <div >
+                    <div class="nav-mobile nav-bar-icon" style="font-family:drugsregular; margin-top:4px;">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- End Mobile Navbar Icon -->
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+
+                        <li>
+                            <a href="\assignment_list" style="font-family: 'Lane - Narrow'; font-weight: normal;">Your Assignments</a>
+                        </li>
+                        <li>
+                            <a href="\">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        <!-- Intro Section -->
+        <section id="intro" class="dark-bg">
+
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" style="height: 100px">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <div class="clearfix"></div>
+
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center" style="padding-top: 30px">
+            <audio></audio>
+            <h2 id="title" class="h3">{{ study.title }}</h2>
+            <div class="container">
+                <table id="segment_table" style="margin: 0 auto" border="1">
+                    <tr id="header_row">
+                        <th style="padding: 5px">ID</th>
+                        <th style="padding: 5px">File</th>
+                        <th style="padding: 5px">Start Time</th>
+                        <th style="padding: 5px">Stop Time</th>
+                        {% for label in labels %}
+                            <th style="padding: 5px">{{ label.label_title }}</th>
+                        {% endfor %}
+                        <th style="padding: 5px">Final Label</th>
+                        <th style="padding: 5px">Percent</th>
+                        <th style="padding: 5px">Play</th>
+                    </tr>
+                    {% for segment in segments %}
+                        <tr class="view" onclick="show_fold(this)">
+                            <td style="padding: 5px">{{ segment.local_id }}</td>
+                            <td style="padding: 5px">{{ segment.file.filename }}</td>
+                            <td style="padding: 5px">{{ segment.start }}</td>
+                            <td style="padding: 5px">{{ segment.stop }}</td>
+                            {% for label_count in segment.label_counts %}
+                                <td style="padding: 5px">{{ label_count }}</td>
+                            {% endfor %}
+                            <td style="padding: 5px">{{ segment.final_label.label_title }}</td>
+                            <td style="padding: 5px">{{ segment.percent }}</td>
+                            <td style="padding: 5px">
+                                <button onclick="playSegment(segment.id)">
+                                    &#9658;
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="fold">
+                            <td colspan="100">
+                                <div class="container">
+                                    <table style="margin: 0 auto" border="1">
+                                        <tr>
+                                            <th style="padding: 5px">Date/Time</th>
+                                            <th style="padding: 5px">Label</th>
+                                            <th style="padding: 5px">User</th>
+                                        </tr>
+                                        {% for response in segment.responses %}
+                                            <tr>
+                                                <td style="padding: 5px">{{ response.label_datetime }}</td>
+                                                <td style="padding: 5px">{{ response.label.label_title }}</td>
+                                                <td style="padding: 5px">{{ response.user.email }}</td>
+                                            </tr>
+                                        {%  endfor %}
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <script>
+                    function show_fold(view) {
+                        $(view).toggleClass("open").next(".fold").toggleClass("open");
+                    };
+                </script>
+                <button class="austin_button" onclick="download_csv()">
+                    Download .csv
+                </button>
+                <button class="austin_button">
+                    Download Segments
+                </button>
+                <a id="a" style="display: none">
+
+                </a>
+            </div>
+        </section>
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

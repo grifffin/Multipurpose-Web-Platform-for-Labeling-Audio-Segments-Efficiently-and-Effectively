@@ -1,0 +1,139 @@
+﻿{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="new_loader">
+        <div class="lad" id="lad">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        <span>{{ full_name }}</span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Navbar Icon -->
+                <div >
+                    <div class="nav-mobile nav-bar-icon" style="font-family:drugsregular; margin-top:4px;">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- End Mobile Navbar Icon -->
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+
+                        <li>
+                            <a href="\" style="font-family: 'Lane - Narrow'; font-weight: normal;">Home</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        <!-- Intro Section -->
+        <section id="intro" class="dark-bg">
+
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" data-background-img="{% static 'main/img/full/bg_image.png' %}">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+                        <div class="container">
+                            <h2>
+                                Your Assignments
+                            </h2>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <div class="clearfix"></div>
+
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center">
+            <div class="container">
+                <input type="text" id="join_study_field" style="display: none">
+                <button id="join_study_button" onclick="join_study_button_click()">
+                    Join a Study
+                </button>
+            </div>
+            <div class="container">
+                <!-- List of studies -->
+                {% if user_studies %}
+                    <div>
+                    {% for study in user_studies %}
+                        {% include "main/includes/study_box_worker.html" %}
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No studies joined yet.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <!-- Copyright Bar -->
+            <section class="copyright ptb-60">
+                <div class="container">
+                    <p class="" style="font-family: 'Lane - Narrow'; font-size: 16px; text-transform: uppercase;">
+                        © 2018 <b>Crafted lovingly in Charleston SC</b>. All Rights Reserved.
+                        <br />
+                        Built  by <b>Ayman Hajja, PhD</b>
+                    </p>
+                </div>
+            </section>
+            <!-- End Copyright Bar -->
+
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- Scroll Top -->
+        <a class="scroll-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+        <!-- End Scroll Top -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

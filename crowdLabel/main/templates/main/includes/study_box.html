@@ -1,0 +1,26 @@
+<div class="accordion-section">
+    <div class="accordion-title" style="border:2px solid darkblue; border-radius:5px; margin:5px; height:100px; background-color:lightgoldenrodyellow;">
+        <div style=" display: inline-block; float:left;  margin:5px; font-size: 20px; text-transform: uppercase;">
+            Title: <b>{{ study.title }}</b>
+        </div>
+
+        <div style="display: inline-block; font-size: 20px; float: right; margin-right: 100px;">
+            {{ study.completion }}% Complete
+        </div>
+        <br style="height:2px;"/>
+        <hr style="border:1px solid darkblue; margin-top:5px; margin-bottom:5px; width:100%;"/>
+        <div style="display:block; float:left; font-size: 20px">
+            Code: {{ study.code }}
+        </div>
+    </div>
+    <div class="accordion-content defualt-hidden" style="display: none;">
+        <a href="\view_study/study={{ study.id }}">
+            <button style="border:1px solid darkgreen; border-radius:4px; font-size:20px ; color:white; background-color:green;" id="{{ study.id }}_study_results">
+                View Results
+            </button>
+        </a>
+        <button style="border:1px solid darkred; border-radius:4px; font-size:20px ; color:white; background-color:indianred;"id="{{ study.id }}_study_delete" onclick="study_delete(this)">
+            Delete
+        </button>
+    </div>
+</div>

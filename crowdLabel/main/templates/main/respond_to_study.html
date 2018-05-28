@@ -1,0 +1,126 @@
+{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+<script>
+    $(document).ready(function () {
+        console.log($("#audio_source").attr("src"));
+        getFirstTime();
+    });
+</script>
+
+{% block content %}
+
+    <section id="new_loader">
+        <div class="lad" id="lad">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        <span>{{ full_name }}</span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Navbar Icon -->
+                <div >
+                    <div class="nav-mobile nav-bar-icon" style="font-family:drugsregular; margin-top:4px;">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- End Mobile Navbar Icon -->
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+
+                        <li>
+                            <a href="\assignment_list" style="font-family: 'Lane - Narrow'; font-weight: normal;">Your Assignments</a>
+                        </li>
+                        <li>
+                            <a href="\">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        <!-- Intro Section -->
+        <section id="intro" class="dark-bg">
+
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" style="height: 100px">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <div class="clearfix"></div>
+
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center" style="padding-top: 30px">
+            <audio id="audio" preload="metadata">
+                <source id="audio_source" src="/media/user_files/F_0142_11y3m_1.wav" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="container" style="text-align: center">
+                <h1 style="margin: 25px">
+                    {{ study.title }}
+                </h1>
+                <button class="austin_button" id="play_button" onclick="play()" disabled>
+                    Load
+                </button>
+                <br/>
+                {% for label in labels %}
+                    <button class="austin_button answer" id="label_{{ label.id }}_button" style="display: inline-block; width: 20%" onclick="labelSegment('{{ label.id}}')" disabled>
+                        {{ label.label_title }}
+                    </button>
+                {% endfor %}
+                <br/>
+                <div class="austin_container" style="height: auto; padding: 20px">
+                    <h4 class="h4" style="margin-bottom: 0">
+                        {{ remaining }} Responses Remaining
+                    </h4>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

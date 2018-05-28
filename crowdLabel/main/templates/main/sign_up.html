@@ -1,0 +1,207 @@
+﻿{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="modal_future_feature" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 40px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; background-color: beige; padding: 10px;">
+                    <h2 style="text-transform: uppercase; padding: 10px; margin: 5px;">Accounts cannot be created as of right now!</h2>
+                </div>
+            </div>
+        </div>amhajja@gmail.com
+    </div>
+
+    <div id="modal_account_created_director" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 40px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; background-color: beige; padding: 10px;">
+                    <h2 style="text-transform: uppercase; padding: 10px; margin: 5px;">Your director account was created! Your account will be activated within 24 hours!</h2>
+                    <button class="btn-primary" style="text-transform: uppercase; margin: 20px; font-size: 20px; padding: 10px;" onclick="window.location = '/';">Got It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_account_created_worker" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 40px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; background-color: beige; padding: 10px;">
+                    <h2 style="text-transform: uppercase; padding: 10px; margin: 5px;">Your worker account was created! Your account will be activated within 24 hours!</h2>
+                    <button class="btn-primary" style="text-transform: uppercase; margin: 20px; font-size: 20px; padding: 10px;" onclick="window.location = '/';">Got It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img"></div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+
+
+    <section id="new_loader">
+        <div class="lad" id="loader">
+            <div class="loader-img"></div>
+        </div>
+    </section>
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        Crowd-sourced Labeling
+                    </a>
+                </div>
+                <!-- End Logo -->
+
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+                        <li>
+                            <a href="/" style="font-family: 'Lane - Narrow'; font-weight: normal;">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+        <!-- Intro Section -->
+        <section id="intro" class="dark-bg">
+
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" data-background-img="{% static 'main/img/full/bg_image.png' %}" style="height: 600px">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+                        <div class="content-caption light-color">
+                            <div class="container" style="width: 80%; margin: 0 auto;">
+
+                                <div class="row">
+                                    <div class="col-md-12" >
+
+
+                                        <div class="border-box" style="background-color: white; opacity: .7; border: 1px grey solid;">
+
+                                            <div>
+                                                <button id="btn_switch_to_director" class="btn-primary" style="text-transform: uppercase; font-size: 20px; padding: 10px; margin-bottom: 30px;" onclick="switch_to_director_sign_up();">Switch to Director Sign-up</button>
+                                                <button id="btn_switch_to_worker" class="btn-warning" style="text-transform: uppercase; font-size: 20px; padding: 10px; margin-bottom: 30px; display: none;" onclick="switch_to_worker_sign_up();">Switch to Worker Sign-up</button>
+                                            </div>
+
+                                            <div id="director_sign_up_div" style="display: none;">
+                                                <div class="form-field-wrapper" style="width: 47%; display: inline-block; float: left;">
+                                                    <label for="first-name" style="font-size: larger; font-weight: normal; font-size: 20px; text-transform: uppercase;">Director First Name</label>
+                                                    <input type="text" required="" placeholder="Enter your First Name" name="first_name" id="director_first_name" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true" autofocus>
+                                                </div>
+
+                                                <div class="form-field-wrapper" style="width: 47%; display: inline-block; float: right">
+                                                    <label for="first-name" style="font-size: larger; font-weight: normal; font-size: 20px; text-transform: uppercase;">Director Last Name</label>
+                                                    <input type="text" required="" placeholder="Enter your Last Name" name="last_name" id="director_last_name" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true">
+                                                </div>
+
+                                                <div>
+                                                    <div class="form-field-wrapper" style="width: 47%; float: left;">
+                                                        <label style="font-weight: normal; font-size: 18px; text-transform: uppercase;">Email</label>
+                                                        <input type="email" spellcheck="false" placeholder="Enter your Email" id="director_sign_up_email" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true" autocomplete="off">
+                                                    </div>
+                                                    <div class="form-field-wrapper" style="width: 47%; float: right;">
+                                                        <label for="login-pass" style="font-size: larger; font-weight: normal; font-size: 18px; text-transform: uppercase;">Password</label>
+                                                        <input type="password" onkeydown="Javascript: if (event.keyCode==13) cosfc_signup_director();" required="" placeholder="Enter your Password" id="director_sign_up_pass" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true">
+                                                    </div>
+                                                    <div class="spacer" style="clear: both;"></div>
+                                                </div>
+
+                                                <div style="text-align: center;">
+                                                    <button class="btn btn-md btn-black" onclick="cosfc_signup_director();" style="font-family: 'Lane - Narrow'; font-weight: normal; font-size: 20px;">Sign Up</button>
+                                                </div>
+                                            </div>
+
+                                            <div id="worker_sign_up_div">
+                                                <!--h3 style="color: #000; font-weight: normal;">Sign Up</h3-->
+                                                <div class="form-field-wrapper" style="width: 47%; display: inline-block; float: left;">
+                                                    <label for="first-name" style="font-size: larger; font-weight: normal; font-size: 20px; text-transform: uppercase;">Worker First Name</label>
+                                                    <input type="text" required="" placeholder="Enter your First Name" name="first_name" id="worker_first_name" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true" autofocus>
+                                                </div>
+
+                                                <div class="form-field-wrapper" style="width: 47%; display: inline-block; float: right;">
+                                                    <label for="first-name" style="font-size: larger; font-weight: normal; font-size: 20px; text-transform: uppercase;">Worker Last Name</label>
+                                                    <input type="text" required="" placeholder="Enter your Last Name" name="last_name" id="worker_last_name" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true">
+                                                </div>
+
+                                                <div>
+                                                    <div class="form-field-wrapper" style="width: 47%; float: left;">
+                                                        <label style="font-weight: normal; font-size: 18px; text-transform: uppercase;">Email</label>
+                                                        <input type="email" placeholder="Enter your Email" id="worker_sign_up_email" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true" autocomplete="off">
+                                                    </div>
+                                                    <div class="form-field-wrapper" style="width: 47%; float: right;">
+                                                        <label for="login-pass" style="font-size: larger; font-weight: normal; font-size: 18px; text-transform: uppercase;">Password</label>
+                                                        <input type="password" onkeydown="Javascript: if (event.keyCode==13) cosfc_signup_worker(); " required="" placeholder="Enter your Password" id="studeint_sign_up_pass" class="input-sm form-full" style="text-align: center; font-size: 18px;" aria-required="true">
+                                                    </div>
+                                                    <div class="spacer" style="clear: both;"></div>
+                                                </div>
+
+                                                <div style="text-align: center;">
+                                                    <button class="btn btn-md btn-black" onclick="cosfc_signup_worker();" style="font-family: 'Lane - Narrow'; font-weight: normal; font-size: 20px;">Sign Up</button>
+                                                </div>
+                                                <!--a class="float-right">Forgot password?</a-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <!-- End CONTENT ------------------------------------------------------------------------------>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <!-- Copyright Bar -->
+            <section class="copyright ptb-60">
+                <div class="container">
+                    <p class="" style="font-family: 'Lane - Narrow'; font-size: 16px; text-transform: uppercase;">
+                        © 2017 <b>Crafted lovingly in Charleston SC</b>. All Rights Reserved.
+                        <br />
+                        Built  by <b>Ayman Hajja, PhD</b>
+                    </p>
+                </div>
+            </section>
+            <!-- End Copyright Bar -->
+
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- Scroll Top -->
+        <a class="scroll-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+        <!-- End Scroll Top -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

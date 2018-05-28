@@ -1,0 +1,286 @@
+{% extends 'main/master_page.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="new_loader">
+        <div class="lad" id="lad">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img">
+                <a href="#">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- modal to show labels -->
+    <div id="label_modal" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 40px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; background-color: beige; padding: 10px;">
+                    <div style="display:block;  ">
+                        <div style="display:inline-block; vertical-align: middle;"><h4 style="margin:5px; font-size:15px; color:grey;">(OPTIONAL):</h4></div>
+                        <div style="vertical-align:middle; display:inline-block"><input type="text" id="label_number_box_modal" placeholder="New number of labels (optional)" style="padding:3px;margin:5px;  font-size:14px;"></div>
+                        <div style="vertical-align:middle; display:inline-block"><button style="padding:3px;background-color:darkcyan;font-size:14px; border:1px solid black; color:white; margin:5px;  padding:3px; border-radius:3px;"onclick="alterLabelBoxesModal()">Alter Number of Labels</button></div>
+                    </div>
+                    <hr style="border:1px solid lightgrey; margin:5px; width:85%"/>
+                    <h2 style="font-size:20px;">Please give each label a name</h2>
+                    <div id="labels_list">
+
+                    </div>
+                    <div style="margin:0 auto">
+                        <button style="background-color:darkcyan;font-size:14px; padding:3px; border:1px solid black; color:white; margin:5px;  padding:3px; border-radius:3px;"onclick="saveLabels()">Save Labels</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- successful study creation-->
+    <div id="create_study_success_modal" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 40px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; background-color: beige; padding: 10px;">
+                   <h2>Your study was created successfully!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Preloader -->
+
+    <!-- Site Wraper -->
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="container header-inner">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="cursor: default; font-weight: normal; font-family: 'Lane - Narrow'; font-size: 24px; line-height: 1; letter-spacing: 2px; text-transform: uppercase;">
+                        <span>{{ full_name }}</span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Navbar Icon -->
+                <div >
+                    <div class="nav-mobile nav-bar-icon" style="font-family:drugsregular; margin-top:4px;">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- End Mobile Navbar Icon -->
+                <!-- Navbar Navigation -->
+                <div class="nav-menu">
+                    <ul class="nav-menu-inner">
+                        <li>
+                            <a href="\upload_files" style="font-family: 'Lane - Narrow'; font-weight: normal;">Upload Files</a>
+                        </li>
+                        <li>
+                            <a href="\study_list" style="font-family: 'Lane - Narrow'; font-weight: normal;">Your Studies</a>
+                        </li>
+                        <li>
+                            <a href="\">Home</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+
+
+        <!-- CONTENT --------------------------------------------------------------------------------->
+
+        <!-- Intro Section -->
+        <section id="intro" style="height:250px;" class="dark-bg">
+
+            <!-- Hero Slider Section -->
+            <div class="owl-carousel fullwidth-slider white o-flow-hidden">
+                <!--Slide-->
+                <div class="item bg-img slide-bg-image parallax parallax-section1" data-background-img="{%  static 'main/img/full/bg_image.png' %}">
+                    <!-- Content -->
+                    <div class="full-cap-wraper overlay-dark80 light-color">
+                        <div class="content-caption light-color">
+                            <div class="container">
+                                <h2>
+                                    Make A New Study
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            <!-- End Hero Slider Section -->
+        </section>
+        <!-- End Intro Section -->
+
+        <div class="clearfix"></div>
+
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp pt pt-sm-80 text-center" style="padding:25px">
+
+
+            <!-- TITLE -->
+
+            <div style="width: 85%;margin:0 auto;display:block; text-align:center; ">
+                <hr style="margin-top:10px; margin-bottom:10px; border:1px solid lightgrey; width:85%;"/>
+                <form>
+                    <input type="text" id="title_box" placeholder="Name of your study" style="padding-top: 10px; padding-bottom:10px; margin:10px; font-size: 24px; text-align:center; width: 600px"/>
+                </form>
+                <hr style="margin-top:10px; margin-bottom:10px; border:1px solid lightgrey; width:85%;"/>
+            </div>
+
+
+            <div style="display:block">
+
+
+                <!-- FILES -->
+                <div style="vertical-align:middle; height:250px; padding:5px; border:1px solid lightgrey; border-radius:4px; display:inline-block; width: 25%; margin:15px; text-align:center; ">
+                    <!--div style="display:block; float:left; margin: 3px; font-size:18px; font-weight:bold; ">&#9312;</div-->
+                    <!-- List of uploaded documents -->
+                    {% if user_files %}
+                        <h2 style="font-size:20px;margin:5px; ">
+                            Choose Files:
+                        </h2>
+                        <form>
+                        <center>
+                             <div style="display: block;" id="file_check_list" >
+                            {% for file in user_files %}
+
+                                 <div style="display:block">
+                                     <input class="file_check_box" type="checkbox" id="{{ file.id }}_file_check_box">
+                                     <label>{{ file.filename }}</label>
+                                 </div>
+
+                            {% endfor %}
+                             </div>
+                        </center>
+                        </form>
+                    {% else %}
+                        <p>No Files Uploaded.</p>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- LABELS -->
+                <div style=" vertical-align:middle; height:250px;  padding:5px; border:1px solid lightgrey; border-radius:4px; display:inline-block; width: 25%; margin:15px; text-align:center; ">
+                    <!--div style="display:block; float:left; margin: 3px; font-size:18px; font-weight:bold; ">&#9313;</div-->
+                    <h2 style="font-size:20px; margin:5px;">
+                        Labels:
+                    </h2>
+
+                    <div>
+                        <label style="margin:3px; font-size:17px"for="segment_duration_response_box">Number of Labels:</label>
+                        <input type="text" id="label_number_box" oninput="makeLabelBoxes()" style="width: 20%; font-size:17px; padding:3px;margin:3px;text-align:center; ">
+                        <div id="label_boxes" style="vertical-align: baseline">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                 <!-- Segments -->
+                <div style="vertical-align:middle; height:250px; padding:5px; border:1px solid lightgrey; border-radius:4px; display:inline-block; width: 25%; margin:15px; text-align:center; ">
+                    <!--div style="display:block; float:left; margin: 3px; font-size:18px; font-weight:bold; ">&#9314;</div-->
+                    <h2 style="font-size:20px; margin:5px;">
+                        Segments
+                    </h2>
+                    <form>
+                        <label style="margin:3px; font-size:17px"for="segment_duration_response_box">Segment Duration (Seconds):</label>
+                        <input type="text" id="segment_duration_response_box" style="font-size:17px; padding:3px;margin:3px;text-align:center; ">
+                        <hr style="margin:15px; width:85%; border:1px solid lightgrey;"/>
+                        <label  style="margin:3px; font-size:17px" for="step_size_response_box">Step Size (Seconds):</label>
+                        <br/>
+                        <input type="text" id="step_size_response_box" style="font-size:17px; padding:3px;margin:3px; text-align:center;">
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="container" style="padding: 0; width: 100%;">
+
+
+                <!-- Responses -->
+                <div class="response_container" style="text-align: left; margin: 0 auto">
+                    <div class="austin_container" style="display: inline-block; width: 45%">
+                        <!--div style="display:block; float:left; margin: 3px; font-size:18px; font-weight:bold; ">&#9315;</div-->
+                        <h2 style="font-size:23px; margin:5px;">
+                            Responses
+                        </h2>
+
+                        <label style="margin:3px; font-size:18px"for="max_response_box">Max Number of Total Responses:</label>
+                        <input type="text" id="max_response_box" style="width: 70px; font-size:17px; padding:3px;margin:3px;text-align:center;">
+
+                        <label style="margin:3px; font-size:18px"for="per_worker_response_box">Max Number of Responses Per Worker:</label>
+                        <input type="text" id="per_worker_response_box" style="width: 70px; font-size:17px; padding:3px;margin:3px;text-align:center;">
+
+                        <label style="margin:3px; font-size:18px"for="min_segment_response_box">Min Number of Responses per Segment:</label>
+                        <input type="text" id="min_segment_response_box" style="width: 70px; font-size:17px; padding:3px;margin:3px;text-align:center;" oninput="explain_responses()">
+
+                        <label style="margin:3px; font-size:18px"for="max_segment_response_box">Max Number of Responses per Segment:</label>
+                        <input type="text" id="max_segment_response_box" style="width: 70px; font-size:17px; padding:3px;margin:3px;text-align:center;" oninput="explain_responses()">
+
+                        <br/>
+
+                        <label style="margin:3px; font-size:18px"for="threshold_response_box">Threshold:</label>
+                        <input type="text" id="threshold_response_box" style="width: 70px; font-size:17px; padding:3px;margin:3px;text-align:center;" oninput="explain_responses()">
+                        <label style="font-size:14px;" for="threshold_response_box">%</label>
+
+                    </div>
+                    <div id="response_explanation"class="austin_container" style="display: inline-block; width: 45%; font-size: 20px">
+
+                    </div>
+                </div>
+            </div>
+
+            <button id="create_button" class="austin_button" onclick="createStudy()">
+                Create Study
+            </button>
+
+        </section>
+        <!-- End Work Section -->
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <!-- Copyright Bar -->
+            <section class="copyright ptb-60">
+                <div class="container">
+                    <p class="" style="font-family: 'Lane - Narrow'; font-size: 16px; text-transform: uppercase;">
+                        © 2018 <b>Crafted lovingly in Charleston SC</b>. All Rights Reserved.
+                        <br />
+                        Built  by <b>Ayman Hajja, PhD</b>
+                    </p>
+                </div>
+            </section>
+            <!-- End Copyright Bar -->
+
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- Scroll Top -->
+        <a class="scroll-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+        <!-- End Scroll Top -->
+
+    </div>
+    <!-- Site Wraper End -->
+
+    <form>{% csrf_token %}</form>
+
+{% endblock %}

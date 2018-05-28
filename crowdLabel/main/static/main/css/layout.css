@@ -1,0 +1,207 @@
+/*
+Item Name : Circular Countdown jQuery Plugin
+Item URI : http://codecanyon.net/item/circular-countdown-jquery-plugin/3761921
+Author URI : http://codecanyon.net/user/Pixelworkshop/
+Version : 1.21
+*/
+
+
+
+/*
+
+Page styling (optionnal)
+
+*/
+
+
+
+
+
+/*  _______________________________________
+
+	COUNTDOWN
+    _______________________________________  */
+	
+
+
+/* 
+   IMPORTANT
+   The exact same width must be set to the #countdown_container and to the canvas
+   element #circular_countdown in the HTML markup !
+*/
+
+#countdown_container {
+	width: 920px;
+	margin: 0 auto;
+	display: block;
+	/*
+	Additional styling
+	*/
+	/*padding: 40px;*/
+	padding: 10px;
+	margin: 10px auto;
+	border-radius:6px;
+	/*
+	background:#ffffff;
+	background:rgba(255,255,255,0.6);
+	border:1px solid #dddddd;
+	border:1px solid rgba(255,255,255,0.6);
+	box-shadow:0 2px 12px #DDDDDD;
+	*/
+}
+#countdown_container h1 {
+
+	text-align:center;
+	color:#212121;
+	line-height:36px;
+	margin:0 auto 42px auto;
+	text-align:center;
+}
+
+#countdown_timer,
+#countdown_timer ul,
+#circular_countdown {
+	position: relative;
+	width:100%;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+}
+#countdown_clock {
+	width:100%;
+	position:relative;
+	z-index:1;
+	margin: 0;
+	padding:0;
+}
+#circular_countdown_days,
+#circular_countdown_hours,
+#circular_countdown_minutes,
+#circular_countdown_seconds {
+	position:relative;
+	z-index:1;
+	padding:0;
+	width: 160px;
+}
+#circular_countdown_days {
+	/*margin: 0 37px 0 30px;*/
+	text-align: center;
+	margin: 0 auto;
+}
+#circular_countdown_hours {
+	text-align: center;
+	/*margin: 0 37px 0 0;*/
+}
+#circular_countdown_minutes {
+	/*margin: 0 37px 0 0;*/
+}
+#circular_countdown_seconds {
+	/*margin: 0;*/
+}
+#countdown_timer {
+	z-index:2;
+	/*width: 800px;*/
+}
+	#countdown_timer li {
+		list-style: none;
+		padding: 18px 20px 8px 20px;
+		margin-top: 42px;
+		/*float: left;*/
+		width: 160px;
+		/*color:#333333;*/
+		color: whitesmoke;
+		font-size: 12px;
+		position: absolute;
+		text-align: center;
+		text-transform:uppercase;
+		left: 0;
+		right: 0;
+		top: 10%;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 740px;
+	}
+
+	#countdown_timer li.days
+	{
+			/*left:0px;*/
+	}
+		#countdown_timer li.hours {
+			/*left:200px;*/
+		}
+		#countdown_timer li.minutes {
+			/*left:400px;*/
+		}
+		#countdown_timer li.seconds {
+			/*left:600px;*/
+		}
+		#countdown_timer li em {
+			display: block;
+			font-size:32px;
+			line-height:30px;
+			font-weight:bold;
+			font-style: normal;
+			padding:0;
+		}
+
+/*
+Markup to keep a decent layout under IE8 and below
+*/
+
+/* IE8 */
+
+@media \0screen {
+	#countdown_timer {
+		height: 130px;
+	}
+	#countdown_container h1 {
+		margin:0 auto;
+	}
+}
+
+/* IE7 and below */
+
+#countdown_timer {
+	*height: 130px;
+}
+#countdown_container h1 {
+	*margin:0 auto;
+}
+
+
+
+
+@media screen and (min-width: 985px) {
+	#countdown_container {
+		width: 920px;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px)
+{
+	#countdown_timer li.minutes
+	{
+		margin-top: 210px;
+	}
+	#countdown_timer li.seconds
+	{
+		margin-top: 210px;
+	}
+}
+
+@media only screen and (max-width: 767px)
+{
+	#countdown_timer li.hours
+	{
+		margin-top: 210px;
+	}
+	#countdown_timer li.minutes
+	{
+		margin-top: 370px;
+	}
+	#countdown_timer li.seconds
+	{
+		margin-top: 535px;
+		color: ind;
+	}
+}
